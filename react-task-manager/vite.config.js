@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react"
 import tailwindcss from "@tailwindcss/vite"
 import { defineConfig } from "vite"
 
+// ✅ Fixed config for deploying to Render
 export default defineConfig({
   plugins: [react(), tailwindcss()],
   resolve: {
@@ -10,8 +11,9 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  base: './', // 👈 This fixes the white screen (404 on assets)
   build: {
-    outDir: "dist", // 👈 This is critical for Render / Netlify
+    outDir: "dist", // ✅ Required for Render publish directory
     rollupOptions: {
       output: {
         manualChunks: undefined,
