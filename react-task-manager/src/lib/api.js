@@ -1,4 +1,5 @@
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api/tasks";
+// react-task-manager/src/lib/api.js
+const API_URL = import.meta.env.VITE_API_URL || "https://wk3backend.onrender.com/api/tasks";
 
 // Get all tasks
 export const getTasks = async () => {
