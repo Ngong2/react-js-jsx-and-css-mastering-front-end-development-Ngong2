@@ -1,45 +1,32 @@
 import { Link } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
-import { Sun, Moon } from "lucide-react"; // optional icons
+import { Sun, Moon } from "lucide-react";
 import Button from "./Button";
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <nav className="flex justify-between items-center p-4 bg-gray-100 dark:bg-gray-900 border-b border-gray-300 dark:border-gray-700 transition-colors duration-300">
-      {/* Logo */}
-      <Link
-        to="/"
-        className="text-xl font-bold text-gray-800 dark:text-white hover:text-blue-600 transition-colors"
-      >
+    <nav className="flex flex-wrap justify-between items-center p-4 bg-gray-100 dark:bg-gray-900 border-b border-gray-300 dark:border-gray-700 transition-colors duration-300">
+      <Link to="/" className="text-xl font-bold text-gray-800 dark:text-white">
         TaskManager
       </Link>
 
-      {/* Navigation + Theme Toggle */}
-      <div className="flex items-center space-x-4">
-        <Link
-          to="/"
-          className="text-gray-700 dark:text-gray-300 hover:text-blue-600 px-3 py-2 rounded transition-colors"
-        >
+      <div className="flex flex-wrap items-center space-x-2 sm:space-x-4 mt-2 sm:mt-0">
+        <Link to="/" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 px-3 py-2 rounded">
           Home
         </Link>
-        <Link
-          to="/tasks"
-          className="text-gray-700 dark:text-gray-300 hover:text-blue-600 px-3 py-2 rounded transition-colors"
-        >
+        <Link to="/tasks" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 px-3 py-2 rounded">
           Tasks
         </Link>
-
-        {/* Dark Mode Toggle */}
         <Button onClick={toggleTheme}>
           {theme === "light" ? (
             <>
-              <Moon className="w-4 h-4 inline-block mr-2" /> Dark Mode
+              <Moon className="w-4 h-4 inline-block mr-1" /> Dark Mode
             </>
           ) : (
             <>
-              <Sun className="w-4 h-4 inline-block mr-2 text-yellow-400" /> Light Mode
+              <Sun className="w-4 h-4 inline-block mr-1 text-yellow-400" /> Light Mode
             </>
           )}
         </Button>

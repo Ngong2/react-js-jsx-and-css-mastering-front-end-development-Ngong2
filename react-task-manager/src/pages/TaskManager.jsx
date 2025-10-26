@@ -20,16 +20,13 @@ const TaskManager = () => {
   }, []);
 
   const handleAddTask = async () => {
-    if (!title.trim()) {
-      alert("Title is required");
-      return;
-    }
+    if (!title.trim()) return alert("Title is required");
     try {
       const newTask = await createTask({ title, description });
       setTasks([newTask, ...tasks]);
       setTitle("");
       setDescription("");
-    } catch (err) {
+    } catch {
       alert("Failed to create task");
     }
   };
@@ -65,19 +62,19 @@ const TaskManager = () => {
   const completed = tasks.filter((t) => t.completed).length;
 
   return (
-    <div className="p-6 max-w-5xl mx-auto min-h-screen">
-      <h1 className="text-4xl font-bold mb-4 text-center text-blue-600 dark:text-blue-400">
+    <div className="p-4 sm:p-6 max-w-6xl mx-auto min-h-screen">
+      <h1 className="text-3xl sm:text-4xl font-bold mb-4 text-center text-blue-600 dark:text-blue-400">
         📘 Task Manager
       </h1>
-      <p className="text-gray-600 dark:text-gray-300 mb-6 text-center">
+      <p className="text-gray-600 dark:text-gray-300 mb-6 text-center text-sm sm:text-base">
         {tasks.length > 0
           ? `${completed} of ${tasks.length} tasks completed`
           : "No tasks yet — start by adding one!"}
       </p>
 
-      <div className="mb-8 bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg transition hover:shadow-2xl">
-        <h2 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">
-           Add New Task
+      <div className="mb-8 bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-xl shadow-lg transition hover:shadow-2xl">
+        <h2 className="text-lg sm:text-xl font-semibold mb-4 text-gray-800 dark:text-white">
+          Add New Task
         </h2>
         <input
           value={title}
@@ -89,22 +86,20 @@ const TaskManager = () => {
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           className="w-full border p-3 rounded-lg mb-3 focus:ring-2 focus:ring-blue-400 outline-none"
-          placeholder="Description "
+          placeholder="Description"
           rows="3"
         />
         <button
           onClick={handleAddTask}
-          className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg transition shadow-md"
+          className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg transition shadow-md w-full sm:w-auto"
         >
           Add Task
         </button>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {tasks.length === 0 ? (
-          <p className="text-gray-500 text-center col-span-full">
-            No tasks found
-          </p>
+          <p className="text-gray-500 text-center col-span-full">No tasks found</p>
         ) : (
           tasks.map((task) => (
             <Card
