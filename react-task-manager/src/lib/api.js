@@ -1,10 +1,8 @@
-// react-task-manager/src/lib/api.js
-
 // Automatically switch between dev and production backend
 const API_URL = import.meta.env.VITE_API_URL || 
   (import.meta.env.MODE === "development"
     ? "http://localhost:5000/api/tasks"
-    : "https://wk3backend.onrender.com/api/tasks");
+    : "https://task-managers-6not.onrender.com/api/tasks");
 
 // Get all tasks
 export const getTasks = async () => {
